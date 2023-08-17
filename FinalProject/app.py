@@ -3,7 +3,6 @@ import pandas as pd
 from flask import Flask, flash, render_template, request
 import pickle
 import numpy as np
-import csv
 
 # Configure application
 app = Flask(__name__)
