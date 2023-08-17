@@ -29,8 +29,8 @@ for feature in features_list:
      feature.sort()
 
 # Feature names
-with open('feature_names.csv', 'r') as f:
-    features_names_list = list(csv.reader(f, delimiter=","))
+#with open('feature_names.csv', 'r') as f:
+    #features_names_list = list(csv.reader(f, delimiter=","))
 
 # Configure SQLite database
 db = SQL("sqlite:///history.db")
@@ -101,13 +101,13 @@ def index():
                 one_hot_encoding_bool(i, categories[x])
                 x += 1
 
-            # Turn list into 2D array
+            # Turn list into 1D array
             features_values = np.array(X).reshape(1, 28)
 
             # Predict model using inputs
             prediction = model.predict_proba(features_values)
 
-            print(prediction)
+            #print(prediction)
             if prediction[0][0] > 0.5:
                 transported = "False"
                 percentage = prediction[0][0] * 100

@@ -108,25 +108,17 @@ X = abt.drop(["Transported", "PassengerId", "Cabin"], axis=1)
 # One-hot encode columns
 X = pd.get_dummies(X)
 #print(X)
-"""
 
-print(X.info())
-print(X.columns)
-"""
 
 # Create csv file of feature names
 with open('feature_names.csv', 'w') as f:
     writer = csv.writer(f)
     writer.writerow(X.columns)
 
-# Create csv file of X
-pd.DataFrame(X).to_csv('X_train.csv')
 
 # Creating target column
 y = abt['Transported']
 
-# Create csv file of y
-pd.DataFrame(y).to_csv('y_train.csv')
 
 ###                 Create training and test split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
@@ -151,8 +143,8 @@ grid = {
     }
 }
 
-###                 Create models from algo-pipelines and parameter-grids 
 
+###                 Create models from algo-pipelines and parameter-grids 
 fit_models = {}
 for algo, pipeline in pipelines.items():
     print(f'Training the {algo} model')
