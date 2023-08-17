@@ -1,0 +1,137 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Predict
+{% endblock %}
+
+{% block main %}
+<h1 class="display-2">Prediction of passenger</h1>
+<h3 class="display-6"><small class="text-body-secondary">Will your passenger survive the spacetime anamoly?</small></h3>
+<b></b>
+<div class="container text-center">
+    <form action='/' method="post">
+        <div>
+            <! -- drop down select menus -->
+            <div class="row gx-1">
+                <div class="col">
+                    <select name="homeplanet" class="form-select form-select-sm" aria-label="Small select example">
+                        <option disabled selected>Home Planet</option>
+                        {% for homeplanet in homeplanets %}
+                            <option value="{{ homeplanet }}">{{homeplanet}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col">
+                    <select name="cryosleep" class="form-select form-select-sm" aria-label="Small select example">
+                        <option disabled selected>Cryo Sleep</option>
+                        {% for cryosleep in cryosleeps %}
+                            <option value="{{ cryosleep }}">{{cryosleep}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col">
+                    <select name="destination" class="form-select form-select-sm" aria-label="Small select example">
+                        <option disabled selected>Destination</option>
+                        {% for destination in destinations %}
+                            <option value="{{ destination }}">{{destination}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col">
+                    <select name="vip" class="form-select form-select-sm" aria-label="Small select example">
+                        <option disabled selected>VIP</option>
+                        {% for vip in vips %}
+                            <option value="{{ vip }}">{{vip}}</option>
+                        {% endfor %}
+                    </select>    
+                </div>    
+                <div class="col">
+                    <select name="deck" class="form-select form-select-sm" aria-label="Small select example">
+                        <option disabled selected>Deck</option>
+                        {% for deck in decks %}
+                            <option value="{{ deck }}">{{deck}}</option>
+                        {% endfor %}
+                    </select> 
+                </div>
+                <div class="col">
+                    <select name="side" class="form-select form-select-sm" aria-label="Small select example">
+                        <option disabled selected>Side</option>
+                        {% for side in sides %}
+                            <option value="{{ side }}">{{side}}</option>
+                        {% endfor %}
+                    </select> 
+                </div>
+            </div>
+
+            <! -- input integer values -->
+            <div class="row">
+                <div class="col">
+                    <input id="age" name="age" placeholder="Age" type="text">
+                </div>
+                <div class="col">
+                    <input id="roomservice" name="roomservice" placeholder="Room Service $" type="text">
+                </div>
+                <div class="col">
+                    <input id="foodcourt" name="foodcourt" placeholder="Food Court $" type="text">
+                </div>
+                <div class="col">
+                    <input id="shoppingmall" name="shoppingmall" placeholder="Shopping Mall $" type="text">
+                </div>
+                <div class="col">
+                    <input id="spa" name="spa" placeholder="Spa $" type="text">
+                </div>
+                <div class="col">
+                    <input id="vrdeck" name="vrdeck" placeholder="VRDeck $" type="text">
+                </div>                
+            </div>  
+            <button class="btn btn-primary" type="submit">Predict</button>
+        </div>
+    </form>
+</div>
+
+<div>
+        <h3>{{ statement }}</h3>
+</div>
+<div class="container text-center">
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-primary">
+                <th>Homeplanet</th>
+                <th>Cryosleep</th>
+                <th>Destination</th>
+                <th>VIP</th>
+                <th>Deck</th>
+                <th>Side</th>
+                <th>Age</th>
+                <th>Roomservice</th>
+                <th>Foodcourt</th>
+                <th>Shoppingmall</th>
+                <th>Spa</th>
+                <th>VRDeck</th>
+                <th>Transported</th>
+                <th>Likelihood</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in history %}
+                <tr>
+                    <td>{{ row.HOMEPLANET }}</td>
+                    <td>{{ row.CRYOSLEEP }}</td>
+                    <td>{{ row.DESTINATION }}</td>
+                    <td>{{ row.VIP }}</td>
+                    <td>{{ row.DECK }}</td>
+                    <td>{{ row.SIDE }}</td>
+                    <td>{{ row.AGE }}</td>
+                    <td>${{ row.ROOMSERVICE }}</td>
+                    <td>${{ row.FOODCOURT }}</td>
+                    <td>${{ row.SHOPPINGMALL }}</td>
+                    <td>${{ row.SPA }}</td>
+                    <td>${{ row.VRDECK }}</td>
+                    <td>{{ row.TRANSPORTED }}</td>
+                    <td>{{ row.TRANSPORTED_PERCENTAGE }}%</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

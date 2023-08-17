@@ -1,0 +1,12 @@
+cs50
+Flask
+pandas
+pickle
+numpy
+csv
+sklearn.model_selection
+sklearn.pipeline
+sklearn.preprocessing
+sklearn.ensemble
+sklearn.model_selection
+sklearn.metrics
