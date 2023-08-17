@@ -28,10 +28,6 @@ features_list = [homeplanets, cryosleeps, destinations, vips, decks, sides]
 for feature in features_list:
      feature.sort()
 
-# Feature names
-#with open('feature_names.csv', 'r') as f:
-    #features_names_list = list(csv.reader(f, delimiter=","))
-
 # Configure SQLite database
 db = SQL("sqlite:///history.db")
 
